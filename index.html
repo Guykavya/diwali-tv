@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>InstaVeritas · Diwali Celebration 2026</title>
+<meta name="theme-color" content="#061727">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🪔</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Ubuntu+Condensed&family=Yatra+One&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-0:#061727; --bg-1:#0a2840; --bg-2:#0d3550; --bg-3:#12456a;
+  --gold:#ffcf5a; --gold-2:#f5b942; --cream:#fff3dc; --cream-soft:#e8d6b4; --maroon:#5c1430;
+  --iv-blue:#1d5fa8;
+  --f-body:'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --f-display:'Yatra One', 'Poppins', Georgia, serif;
+  --f-logo:'Ubuntu Condensed', 'Arial Narrow', 'Roboto Condensed', sans-serif;
+  --s:1;
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top, 0px);
+  padding-bottom:env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){ --bg-0:#061727; --cream:#fff3dc; } }
+:root[data-theme="dark"]{ --bg-0:#061727; --cream:#fff3dc; }
+html{ scroll-padding-top:env(safe-area-inset-top, 0px); }
+*,*::before,*::after{ box-sizing:inherit; }
+html,body{ height:100%; margin:0; overflow:hidden; }
+body{ background:var(--bg-0); color:var(--cream); font-family:var(--f-body); -webkit-font-smoothing:antialiased; }
+body.idle{ cursor:none; }
+
+/* ---------- fixed 16:9 stage, scaled to fit any screen ---------- */
+#stage{ position:absolute; left:50%; top:50%; width:1920px; height:1080px; overflow:hidden;
+  transform:translate(-50%,-50%) scale(var(--s)); transform-origin:50% 50%;
+  background:radial-gradient(120% 95% at 50% 8%, var(--bg-3) 0%, var(--bg-2) 32%, var(--bg-1) 62%, var(--bg-0) 100%); }
+.stars{ position:absolute; inset:0; z-index:0; }
+.star{ position:absolute; border-radius:50%; background:#fff; animation:tw var(--t,3s) ease-in-out infinite; animation-delay:var(--d,0s); }
+@keyframes tw{ 0%,100%{opacity:.2} 50%{opacity:.95} }
+canvas.back{ position:absolute; inset:0; z-index:1; width:1920px; height:1080px; }
+#track{ position:absolute; left:0; top:0; width:1920px; z-index:2; will-change:transform; }
+.vig{ position:absolute; inset:0; z-index:3; pointer-events:none;
+  background:linear-gradient(var(--bg-1) 0, rgba(10,40,64,0) 150px, rgba(10,40,64,0) calc(100% - 110px), rgba(6,23,39,.92) 100%); }
+canvas.front{ position:absolute; inset:0; z-index:4; width:1920px; height:1080px; pointer-events:none; }
+.frame{ position:absolute; inset:0; z-index:5; pointer-events:none; }
+
+/* ---------- pillars, toran, lanterns (the fixed frame) ---------- */
+.pillar{ position:absolute; top:0; width:200px; height:1080px; filter:drop-shadow(0 0 26px rgba(0,0,0,.55)); }
+.pillar svg{ width:100%; height:100%; display:block; overflow:visible; }
+.pillar.l{ left:0; } .pillar.r{ right:0; transform:scaleX(-1); }
+.toran{ position:absolute; left:200px; top:-6px; width:1520px; height:170px; filter:drop-shadow(0 6px 6px rgba(0,0,0,.35)); }
+.toran svg{ display:block; width:100%; height:100%; overflow:visible; }
+.flantern{ position:absolute; top:0; width:74px; transform-origin:50% 0; animation:swing 4.6s ease-in-out infinite alternate; }
+.flantern.l{ left:228px; } .flantern.r{ right:228px; animation-delay:-2.1s; }
+.kandil{ width:100%; height:auto; display:block; overflow:visible; }
+.kandil .halo{ animation:halo 2.4s ease-in-out infinite alternate; }
+@keyframes halo{ from{opacity:.1} to{opacity:.28} }
+@keyframes swing{ from{transform:rotate(-3.5deg)} to{transform:rotate(3.5deg)} }
+
+/* ---------- shared bits ---------- */
+.sec{ position:relative; width:1920px; height:1080px; }
+.a{ opacity:0; transform:translateY(40px); }
+.a-pop{ opacity:0; transform:scale(.9); }
+.sec.on .a{ animation:up 1s cubic-bezier(.2,.8,.2,1) forwards; animation-delay:var(--d,0s); }
+.sec.on .a-pop{ animation:popin 1.1s cubic-bezier(.2,.9,.25,1.15) forwards; animation-delay:var(--d,0s); }
+.sec.on.instant .a,.sec.on.instant .a-pop{ animation:none; opacity:1; transform:none; }
+@keyframes up{ to{ opacity:1; transform:none } }
+@keyframes popin{ to{ opacity:1; transform:none } }
+.gold-text{ background:linear-gradient(180deg,#fff6cf 0%,#ffd166 45%,#ff9f1c 85%,#f07c16 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  filter:drop-shadow(0 4px 0 rgba(60,10,20,.55)) drop-shadow(0 0 26px rgba(255,170,60,.35)); }
+.emo{ -webkit-text-fill-color:initial; color:#fff; filter:none; }
+.sec-title{ position:absolute; left:220px; right:220px; top:104px; margin:0; text-align:center;
+  font:400 80px/1.15 var(--f-display); }
+.diya{ position:absolute; width:76px; height:64px; }
+.diya svg{ width:100%; height:100%; display:block; overflow:visible; }
+.flame{ transform-box:fill-box; transform-origin:50% 100%; animation:flicker 1.2s ease-in-out infinite alternate; animation-delay:var(--dl,0s); }
+.dglow{ animation:glowp 1.7s ease-in-out infinite alternate; animation-delay:var(--dl,0s); }
+@keyframes flicker{ 0%{transform:scale(1,1) skewX(0)} 30%{transform:scale(.9,1.1) skewX(-4deg)} 60%{transform:scale(1.05,.94) skewX(3deg)} 100%{transform:scale(.97,1.06) skewX(-1deg)} }
+@keyframes glowp{ from{opacity:.6} to{opacity:1} }
+
+/* logo lockup (redrawn InstaVeritas mark, brand blue + sparkler) */
+.logo{ display:inline-flex; align-items:center; gap:calc(var(--lh) * .22); height:var(--lh); color:var(--iv-blue); }
+.logo .lm{ height:100%; width:auto; overflow:visible; }
+.logo .wm{ font:400 calc(var(--lh) * .66)/1 var(--f-logo); letter-spacing:.005em; }
+.plate{ display:inline-flex; align-items:center; padding:18px 32px; border-radius:22px;
+  background:linear-gradient(180deg,#fffcf4,#fde9c4);
+  box-shadow:0 0 0 3px var(--gold), 0 0 0 10px rgba(255,207,90,.14), 0 16px 34px rgba(0,0,0,.45), 0 0 50px rgba(255,200,90,.32); }
+.spk{ transform-box:fill-box; transform-origin:center; animation:spk .55s ease-in-out infinite alternate; }
+.spk2{ transform-box:fill-box; transform-origin:center; animation:spkr 2.4s linear infinite; }
+@keyframes spk{ from{ transform:scale(.65) rotate(0deg); opacity:.75 } to{ transform:scale(1.25) rotate(25deg); opacity:1 } }
+@keyframes spkr{ to{ transform:rotate(360deg) } }
+
+/* ---------- 1 · hero poster ---------- */
+.hero-left{ position:absolute; left:330px; top:140px; width:720px; }
+.hero-top{ display:flex; align-items:center; gap:22px; }
+.presents{ margin:0; font:600 italic 40px/1 var(--f-body); color:var(--gold); }
+.happy{ margin:30px 0 0; font:400 152px/.98 var(--f-display); padding-bottom:8px; }
+.fol{ margin:12px 0 0; font:500 38px/1.2 var(--f-body); color:var(--cream); letter-spacing:.04em; }
+.banner{ margin-top:30px; white-space:nowrap; display:inline-flex; flex-direction:column; gap:8px; padding:22px 34px; border-radius:22px;
+  background:linear-gradient(180deg,#fffaf0,#ffeccb); color:var(--maroon);
+  box-shadow:0 0 0 3px var(--gold), 0 14px 34px rgba(0,0,0,.4); }
+.banner strong{ font:800 40px/1.15 var(--f-body); }
+.banner span{ font:700 30px/1.2 var(--f-body); color:#b8431b; }
+.chips{ list-style:none; margin:26px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:12px; max-width:720px; }
+.chips li{ font:600 24px/1 var(--f-body); color:var(--cream); padding:11px 18px; border-radius:999px;
+  background:rgba(255,255,255,.07); border:2px solid rgba(255,207,90,.5); }
+.hero-rangoli{ position:absolute; left:1010px; top:160px; width:660px; height:660px; }
+.hero-rangoli svg{ position:absolute; inset:0; width:100%; height:100%; overflow:visible; filter:drop-shadow(0 0 40px rgba(255,160,60,.28)); }
+.hero-rangoli canvas{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+.hr-spin{ transform-box:fill-box; transform-origin:center; animation:spkr 120s linear infinite; }
+
+/* ---------- 2 · schedule journey ---------- */
+.sh{ position:absolute; left:220px; right:220px; top:108px; text-align:center; }
+.sh-pre{ margin:0; font:600 italic 34px/1 var(--f-body); color:var(--gold); }
+.sh h2{ margin:10px 0 0; font:400 100px/1.1 var(--f-display); }
+.sh-sub{ margin:6px 0 0; font:500 34px/1.2 var(--f-body); color:var(--cream); letter-spacing:.03em; }
+.tline{ position:absolute; left:330px; width:1260px; top:637px; height:6px; border-radius:6px;
+  background:linear-gradient(90deg,#c9861f,#ffd36b,#c9861f); box-shadow:0 0 18px rgba(255,190,80,.5); }
+.fuse{ position:absolute; top:50%; left:0; width:30px; height:30px; margin:-15px 0 0 -15px; border-radius:50%; opacity:0;
+  background:radial-gradient(circle,#fff 0 20%,#ffe28a 35%,rgba(255,160,40,.6) 55%,transparent 72%); }
+.sched.on .fuse{ animation:fuse 4.2s ease-in-out .7s forwards; }
+.sched.on.instant .fuse{ animation:none; }
+@keyframes fuse{ 0%{left:0; opacity:1} 92%{opacity:1} 100%{left:100%; opacity:0} }
+.node{ position:absolute; left:calc(var(--x) - 18px); top:622px; width:36px; height:36px; border-radius:50%;
+  background:#ffd04d; border:6px solid var(--c); box-shadow:0 0 0 6px var(--bg-2), 0 0 24px var(--c); }
+.ev{ position:absolute; left:calc(var(--x) - 200px); width:400px; padding:18px 24px 22px; border-radius:22px;
+  background:#fffaf1; border:4px solid var(--c); color:var(--maroon); text-align:left;
+  box-shadow:0 12px 30px rgba(0,0,0,.4), 0 0 34px rgba(255,180,80,.18); }
+.ev.up{ bottom:calc(1080px - 584px); } .ev.down{ top:696px; }
+.ev::after{ content:""; position:absolute; left:50%; width:5px; margin-left:-2.5px; height:44px; background:var(--c); }
+.ev.up::after{ top:calc(100% + 4px); } .ev.down::after{ bottom:calc(100% + 4px); }
+.ev .pill{ display:inline-block; background:var(--c); color:#fff; font:700 23px/1 var(--f-body); padding:9px 18px; border-radius:999px; }
+.ev .t{ display:block; margin-top:12px; font:800 38px/1.14 var(--f-body); }
+
+/* ---------- 3 · photo grid ---------- */
+.pgrid{ position:absolute; left:290px; top:236px; width:1340px; height:780px; display:grid;
+  grid-template-columns:repeat(4,1fr); grid-template-rows:repeat(4,1fr); gap:20px; }
+.ph{ margin:0; border-radius:16px; overflow:hidden; background:#0a2235;
+  box-shadow:0 0 0 4px var(--gold), 0 16px 34px rgba(0,0,0,.5); }
+.ph img,.sframe img{ width:100%; height:100%; object-fit:cover; display:block; }
+.sec.on .ph img,.sec.on .sframe img{ animation:kb 14s ease-out both; }
+@keyframes kb{ from{ transform:scale(1.1) } to{ transform:scale(1) } }
+
+/* ---------- full-page video ---------- */
+.vframe{ position:absolute; left:310px; top:222px; width:1300px; height:732px; border-radius:24px; overflow:hidden; background:#000;
+  box-shadow:0 0 0 6px var(--gold), 0 0 0 16px rgba(255,207,90,.16), 0 24px 60px rgba(0,0,0,.6), 0 0 90px rgba(255,160,60,.25); }
+.vframe video{ width:100%; height:100%; object-fit:cover; display:block; }
+.rosette{ position:absolute; width:110px; height:110px; }
+.rosette svg{ width:100%; height:100%; display:block; animation:spkr 40s linear infinite; }
+
+/* ---------- single photo pages ---------- */
+.sframe{ position:absolute; border-radius:22px; overflow:hidden; background:#0a2235;
+  box-shadow:0 0 0 6px var(--gold), 0 0 0 16px rgba(255,207,90,.14), 0 24px 60px rgba(0,0,0,.6); }
+.ribbon{ position:absolute; left:50%; top:888px; transform:translateX(-50%); white-space:nowrap;
+  padding:20px 52px; border-radius:20px; background:linear-gradient(180deg,#fffaf0,#ffeccb); color:var(--maroon);
+  font:800 46px/1.1 var(--f-body); box-shadow:0 0 0 4px var(--gold), 0 16px 34px rgba(0,0,0,.45); }
+.sec.on .ribbon.a{ animation-name:upc; }
+.ribbon.a{ transform:translate(-50%,40px); }
+@keyframes upc{ to{ opacity:1; transform:translate(-50%,0) } }
+.sec.on.instant .ribbon.a{ transform:translateX(-50%); }
+.duo-text{ position:absolute; left:300px; top:300px; width:460px; }
+.duo-text h2{ margin:0; font:400 150px/.98 var(--f-display); }
+.duo-text p{ margin:28px 0 0; font:500 38px/1.35 var(--f-body); color:var(--cream); }
+.dice{ display:block; font-size:110px; line-height:1; margin-top:30px; }
+.sec.on .dice{ animation:roll 2.4s ease-in-out 1.2s infinite; }
+@keyframes roll{ 0%,70%,100%{ transform:rotate(0) } 80%{ transform:rotate(-18deg) translateY(-14px) } 90%{ transform:rotate(14deg) } }
+.tilt-l{ rotate:-2.5deg; } .tilt-r{ rotate:2.5deg; }
+
+/* ---------- closing ---------- */
+.close-lantern{ position:absolute; top:0; width:104px; transform-origin:50% 0; animation:swing 4.2s ease-in-out infinite alternate; }
+.close-text{ position:absolute; left:220px; right:220px; top:440px; text-align:center; }
+.close-text h2{ margin:0; font:400 110px/1.08 var(--f-display); }
+.close-text p{ margin:16px 0 0; font:500 42px/1.3 var(--f-body); color:var(--cream); }
+.close-logo{ position:absolute; left:0; right:0; top:716px; text-align:center; }
+
+/* operator toast */
+.hud{ position:absolute; left:50%; bottom:40px; z-index:9; transform:translateX(-50%); padding:14px 28px; border-radius:999px;
+  background:rgba(6,23,39,.85); border:2px solid rgba(255,207,90,.6); color:var(--cream); font:600 26px var(--f-body);
+  opacity:0; transition:opacity .3s; pointer-events:none; }
+.hud.show{ opacity:1; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gFlame" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fffbe0"/><stop offset=".45" stop-color="#ffd23f"/><stop offset="1" stop-color="#ff6a00"/></linearGradient>
+    <radialGradient id="gGlow"><stop offset="0" stop-color="#ffd27a" stop-opacity=".95"/><stop offset="1" stop-color="#ff8a1f" stop-opacity="0"/></radialGradient>
+    <linearGradient id="gClay" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dc6a2e"/><stop offset="1" stop-color="#7a2410"/></linearGradient>
+    <linearGradient id="pStone" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#5e2c10"/><stop offset=".16" stop-color="#a8642a"/><stop offset=".42" stop-color="#f2c47a"/><stop offset=".58" stop-color="#e0a456"/><stop offset=".86" stop-color="#8f4d1e"/><stop offset="1" stop-color="#4f240c"/></linearGradient>
+    <linearGradient id="pDark" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#3a1907"/><stop offset=".5" stop-color="#7d4219"/><stop offset="1" stop-color="#341605"/></linearGradient>
+    <linearGradient id="pGold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9c6b18"/><stop offset=".45" stop-color="#ffe492"/><stop offset="1" stop-color="#b47a1e"/></linearGradient>
+  </defs>
+</svg>
+
+<div id="stage">
+  <div class="stars" id="stars"></div>
+  <canvas class="back" id="backFx" width="1920" height="1080"></canvas>
+
+  <div id="track">
+    <!-- 1 · Poster -->
+    <section class="sec hero" data-hold="6">
+      <div class="hero-left">
+        <div class="hero-top a" style="--d:.1s"><span class="plate" data-logo="58"></span><p class="presents">presents</p></div>
+        <h1 class="happy gold-text a" style="--d:.3s">Happy<br>Diwali</h1>
+        <p class="fol a" style="--d:.5s">The festival of lights</p>
+        <div class="banner a" style="--d:.7s"><strong>Today is our Diwali Celebration!</strong><span>30 Oct 2026 · 10:30 AM onwards</span></div>
+        <ul class="chips a" style="--d:.9s"><li>🎲 Games</li><li>🪔 Puja</li><li>🍛 Lunch</li><li>🎟️ Tambola</li><li>💃 Dance &amp; Performances</li></ul>
+      </div>
+      <div class="hero-rangoli a-pop" style="--d:.2s"><div class="hr-holder"></div><canvas width="660" height="660"></canvas></div>
+      <div class="hero-diyas"></div>
+    </section>
+
+    <!-- 2 · Schedule -->
+    <section class="sec sched" data-hold="7.5">
+      <header class="sh">
+        <p class="sh-pre a" style="--d:.05s">InstaVeritas presents</p>
+        <h2 class="gold-text a" style="--d:.15s">Diwali Celebration</h2>
+        <p class="sh-sub a" style="--d:.3s">Event schedule · 30 October 2026</p>
+      </header>
+      <div class="tline a" style="--d:.45s"><div class="fuse"></div></div>
+      <div class="sched-items"></div>
+      <div class="sched-diyas"></div>
+    </section>
+
+    <!-- 3 · Photo grid -->
+    <section class="sec grid" data-hold="6.5">
+      <h2 class="sec-title gold-text a">Moments <span class="emo">📸</span></h2>
+      <div class="pgrid">
+        <figure class="ph a-pop" style="grid-area:1/1/4/2;--d:.25s"><img src="assets/photo-05.jpg" alt="Colleagues playing Ludo on a phone"></figure>
+        <figure class="ph a-pop" style="grid-area:4/1/5/2;--d:.85s"><img src="assets/photo-01.jpg" alt="Prize winners with a gift"></figure>
+        <figure class="ph a-pop" style="grid-area:1/2/3/4;--d:.4s"><img src="assets/photo-03.jpg" alt="The whole team cheering"></figure>
+        <figure class="ph a-pop" style="grid-area:3/2/5/4;--d:.7s"><img src="assets/photo-02.jpg" alt="Team members celebrating a win"></figure>
+        <figure class="ph a-pop" style="grid-area:1/4/4/5;--d:.55s"><img src="assets/photo-09.jpg" alt="Two colleagues holding a prize"></figure>
+        <figure class="ph a-pop" style="grid-area:4/4/5/5;--d:1s"><img src="assets/photo-08.jpg" alt="Everyone gathered for the activities"></figure>
+      </div>
+    </section>
+
+    <!-- 4 · Video -->
+    <section class="sec vid" data-hold="video">
+      <h2 class="sec-title gold-text a">Dance floor: officially open <span class="emo">💃</span></h2>
+      <div class="vframe a-pop" style="--d:.2s"><video muted playsinline preload="none" poster="assets/video-01-poster.jpg" src="assets/video-01.mp4"></video></div>
+      <div class="rosettes"></div>
+    </section>
+
+    <!-- 5 · Single photo -->
+    <section class="sec single" data-hold="5">
+      <figure class="sframe a-pop" style="left:330px;top:116px;width:1260px;height:709px;--d:.1s"><img src="assets/photo-04.jpg" alt="The InstaVeritas team together"></figure>
+      <div class="ribbon a" style="--d:.5s">Team InstaVeritas, all lit up ✨</div>
+    </section>
+
+    <!-- 6 · Ludo duo -->
+    <section class="sec duo" data-hold="5.5">
+      <div class="duo-text">
+        <h2 class="gold-text a" style="--d:.1s">Ludo<br>Fun</h2>
+        <p class="a" style="--d:.35s">Game faces on. Friendships on pause.</p>
+        <span class="dice a" style="--d:.55s" aria-hidden="true">🎲</span>
+      </div>
+      <figure class="sframe a-pop tilt-l" style="left:820px;top:140px;width:450px;height:800px;--d:.3s"><img src="assets/photo-06.jpg" alt="A Ludo player grinning at his phone"></figure>
+      <figure class="sframe a-pop tilt-r" style="left:1250px;top:170px;width:410px;height:729px;--d:.55s"><img src="assets/photo-10.jpg" alt="Friends huddled around a phone playing Ludo"></figure>
+    </section>
+
+    <!-- 7 · Video -->
+    <section class="sec vid" data-hold="video">
+      <h2 class="sec-title gold-text a">Grand finale energy <span class="emo">✨</span></h2>
+      <div class="vframe a-pop" style="--d:.2s"><video muted playsinline preload="none" poster="assets/video-02-poster.jpg" src="assets/video-02.mp4"></video></div>
+      <div class="rosettes"></div>
+    </section>
+
+    <!-- 8 · Single photo -->
+    <section class="sec single" data-hold="5">
+      <h2 class="sec-title gold-text a">And the prize goes to… <span class="emo">🏆</span></h2>
+      <figure class="sframe a-pop" style="left:370px;top:236px;width:1180px;height:664px;--d:.25s"><img src="assets/photo-01.jpg" alt="Prize winners posing together"></figure>
+    </section>
+
+    <!-- 9 · Closing -->
+    <section class="sec closing" data-hold="6.5">
+      <div class="close-lanterns"></div>
+      <div class="close-text">
+        <h2 class="gold-text a" style="--d:.2s">Happy &amp; Prosperous Diwali</h2>
+        <p class="a" style="--d:.45s">Insta Veritas wishes you light, joy &amp; togetherness</p>
+      </div>
+      <div class="close-logo a" style="--d:.7s"><span class="plate" data-logo="70"></span></div>
+      <div class="close-diyas"></div>
+    </section>
+  </div>
+
+  <div class="vig"></div>
+  <canvas class="front" id="frontFx" width="1920" height="1080"></canvas>
+  <div class="frame" aria-hidden="true">
+    <div class="pillar l"></div><div class="pillar r"></div>
+    <div class="toran"></div>
+    <div class="flantern l"></div><div class="flantern r"></div>
+  </div>
+  <div class="hud" id="hud"></div>
+</div>
+
+<script>
+(() => {
+'use strict';
+const W = 1920, H = 1080, GLIDE = 2400;
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const rand = (a, b) => a + Math.random() * (b - a);
+const pick = a => a[(Math.random() * a.length) | 0];
+const TAU = Math.PI * 2;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
+
+/* ---------- fit the 1920×1080 stage to the screen ---------- */
+const stage = $('#stage');
+function fit() { stage.style.setProperty('--s', Math.min(innerWidth / W, innerHeight / H)); }
+fit(); addEventListener('resize', fit);
+
+/* ---------- art ---------- */
+function petal(r0, len, w, a, fill) {
+  const r1 = r0 + len;
+  return `<path d="M0 ${-r0} C${w} ${-(r0 + len * .35)} ${w * .55} ${-(r1 - len * .1)} 0 ${-r1} C${-w * .55} ${-(r1 - len * .1)} ${-w} ${-(r0 + len * .35)} 0 ${-r0}Z" fill="${fill}" transform="rotate(${a.toFixed(2)})"/>`;
+}
+function ringOf(n, fn, off = 0) { let s = ''; for (let i = 0; i < n; i++) s += fn(off + i * 360 / n, i); return s; }
+function dotsRing(n, r, rad, fill, off = 0) {
+  return ringOf(n, a => { const t = a * Math.PI / 180; return `<circle cx="${(Math.sin(t) * r).toFixed(2)}" cy="${(-Math.cos(t) * r).toFixed(2)}" r="${rad}" fill="${fill}"/>`; }, off);
+}
+// InstaVeritas mark, redrawn from the brand artwork, with a sparkler in the raised hand
+const MARK = `
+  <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="5.5"/>
+  <circle cx="47" cy="33.5" r="7.6" fill="currentColor"/>
+  <path d="M38.5 48.5 Q38.5 44.5 42.5 44.5 L56.5 44.5 L60.5 51 L56.8 81 L42 81 Z" fill="currentColor"/>
+  <path d="M58 53.5 L84 39.5" stroke="currentColor" stroke-width="6.6" fill="none"/>
+  <path d="M21 59.5 L36 78 L41.5 71" stroke="currentColor" stroke-width="6" fill="none"/>
+  <line x1="84" y1="39.5" x2="76.5" y2="27.5" stroke="#c8962e" stroke-width="1.8" stroke-linecap="round"/>
+  <g transform="translate(76 26.5)">
+    <g class="spk2"><path d="M0 -12 L0 12 M-12 0 L12 0 M-8 -8 L8 8 M-8 8 L8 -8" stroke="#ffcf5a" stroke-width="1" opacity=".85"/></g>
+    <g class="spk"><path d="M0 -8 L1.5 -1.5 L8 0 L1.5 1.5 L0 8 L-1.5 1.5 L-8 0 L-1.5 -1.5Z" fill="#ffe9a0"/><circle r="2.3" fill="#fff"/></g>
+  </g>`;
+const logoHTML = h => `<span class="logo" style="--lh:${h}px" role="img" aria-label="InstaVeritas"><svg class="lm" viewBox="0 0 100 100" aria-hidden="true">${MARK}</svg><span class="wm" aria-hidden="true">InstaVeritas</span></span>`;
+
+function heroRangoliSVG() {
+  const O = '#f28a2e', O2 = '#f9a640', P = '#e0457b', C = '#fde3b0', G = '#f5b942';
+  return `<svg viewBox="-100 -100 200 200" aria-hidden="true">
+    <circle r="97" fill="none" stroke="${G}" stroke-opacity=".4" stroke-width=".7"/>
+    <g class="hr-spin">
+      ${dotsRing(24, 90, 1.7, G, 7.5)}
+      ${ringOf(12, a => petal(47, 32, 15, a, O2), 15)}
+      ${ringOf(12, a => petal(51, 36, 17, a, O))}
+      ${ringOf(24, a => petal(57, 11, 4.8, a, P), 7.5)}
+      ${dotsRing(12, 76, 1.9, G, 15)}
+      <circle r="47" fill="none" stroke="${G}" stroke-opacity=".55" stroke-width=".7" stroke-dasharray="1.5 2.5"/>
+      ${ringOf(12, a => petal(32, 20, 10, a, C), 15)}
+      ${dotsRing(12, 40, 1.6, G)}
+    </g>
+    <circle r="31" fill="#fff8ec" stroke="${G}" stroke-width="3.4"/>
+    <circle r="27.5" fill="none" stroke="${G}" stroke-opacity=".45" stroke-width=".6"/>
+    <g transform="translate(-25 -25) scale(.5)" style="color:var(--iv-blue)">${MARK}</g>
+  </svg>`;
+}
+function rosetteSVG() {
+  return `<svg viewBox="-100 -100 200 200" aria-hidden="true">${ringOf(12, a => petal(30, 60, 22, a, '#f28a2e'))}${ringOf(12, a => petal(30, 42, 12, a, '#e0457b'), 15)}<circle r="32" fill="#fde3b0"/><circle r="16" fill="#f5b942"/>${dotsRing(12, 24, 3, '#e0457b')}</svg>`;
+}
+const diyaSVG = () => `<svg viewBox="0 0 60 50" aria-hidden="true">
+  <ellipse class="dglow" cx="30" cy="18" rx="24" ry="20" fill="url(#gGlow)"/>
+  <path class="flame" d="M30 2 C36 10 38 17 30 25 C22 17 24 10 30 2Z" fill="url(#gFlame)"/>
+  <path class="flame" d="M30 12 C32 16 33 19 30 23 C27 19 28 16 30 12Z" fill="#fff" opacity=".75"/>
+  <path d="M3 24 Q30 31 57 24 Q53 45 30 47 Q7 45 3 24Z" fill="url(#gClay)"/>
+  <path d="M3 24 Q30 31 57 24" stroke="#ffcf6b" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+  <g fill="#ffd27a"><circle cx="14" cy="35" r="1.6"/><circle cx="22" cy="37" r="1.6"/><circle cx="30" cy="38" r="1.8"/><circle cx="38" cy="37" r="1.6"/><circle cx="46" cy="35" r="1.6"/></g>
+</svg>`;
+function placeDiyas(el, pts) {
+  el.innerHTML = pts.map(([x, y]) => `<div class="diya" style="left:${(x - 38).toFixed(0)}px;top:${(y - 32).toFixed(0)}px;--dl:${rand(-1.2, 0).toFixed(2)}s">${diyaSVG()}</div>`).join('');
+}
+function kandilSVG(col, t) {
+  let tas = '';
+  [33, 40, 47].forEach((x, i) => { tas += `<line x1="${x}" y1="${t + 84 - Math.abs(x - 40) * .9}" x2="${x}" y2="${t + 112 + (i === 1 ? 6 : 0)}" stroke="#f5b942" stroke-width="1.6" stroke-linecap="round"/>`; });
+  return `<svg class="kandil" viewBox="0 0 80 ${t + 124}" aria-hidden="true">
+    <line x1="40" y1="0" x2="40" y2="${t}" stroke="#c9b48a" stroke-opacity=".75" stroke-width="1.3"/>
+    <circle class="halo" cx="40" cy="${t + 46}" r="40" fill="${col}"/>
+    ${tas}
+    <rect x="33" y="${t}" width="14" height="6" rx="1.5" fill="#f5b942"/>
+    <path d="M40 ${t + 6} L64 ${t + 28} L64 ${t + 62} L40 ${t + 86} L16 ${t + 62} L16 ${t + 28}Z" fill="${col}"/>
+    <path d="M16 ${t + 28} L40 ${t + 36} L64 ${t + 28} M16 ${t + 62} L40 ${t + 70} L64 ${t + 62}" stroke="rgba(0,0,0,.16)" stroke-width="1.6" fill="none"/>
+    <rect x="29" y="${t + 34}" width="22" height="27" rx="2" fill="#fde3b0"/>
+    <line x1="40" y1="${t + 34}" x2="40" y2="${t + 61}" stroke="${col}" stroke-width="2"/>
+  </svg>`;
+}
+function marigold(cx, cy, r, c1, c2) {
+  let s = '';
+  for (let i = 0; i < 12; i++) { const a = i / 12 * TAU; s += `<circle cx="${(cx + Math.cos(a) * r * .6).toFixed(1)}" cy="${(cy + Math.sin(a) * r * .6).toFixed(1)}" r="${(r * .46).toFixed(1)}" fill="${c1}"/>`; }
+  for (let i = 0; i < 7; i++) { const a = i / 7 * TAU + .3; s += `<circle cx="${(cx + Math.cos(a) * r * .28).toFixed(1)}" cy="${(cy + Math.sin(a) * r * .28).toFixed(1)}" r="${(r * .33).toFixed(1)}" fill="${c2}"/>`; }
+  return s + `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${(r * .2).toFixed(1)}" fill="#b84a00"/>`;
+}
+function leaf(cx, cy, k = 1) {
+  return `<path d="M${cx} ${cy} C${cx + 7 * k} ${cy + 6 * k} ${cx + 6 * k} ${cy + 16 * k} ${cx} ${cy + 22 * k} C${cx - 6 * k} ${cy + 16 * k} ${cx - 7 * k} ${cy + 6 * k} ${cx} ${cy}Z" fill="#2f8a3b"/><path d="M${cx} ${cy + 2 * k} L${cx} ${cy + 20 * k}" stroke="#86cc72" stroke-width="1"/>`;
+}
+const OR = ['#ff8a1a', '#ffab3d'], YE = ['#ffc21a', '#ffdd66'];
+function toranSVG() {
+  const Wd = 1520, sw = Wd / 4; let back = '', front = '', drops = '';
+  for (let j = 0; j < 4; j++) {
+    const x0 = j * sw;
+    back += `<path d="M${x0} 10 Q${x0 + sw / 2} 150 ${x0 + sw} 10" stroke="#3d8b37" stroke-width="2.5" fill="none"/>`;
+    const n = 17;
+    for (let k = 1; k < n; k++) { const t = k / n; back += marigold(x0 + sw * t, 10 + 280 * t * (1 - t), 11, ...(k % 2 ? YE : OR)); }
+    for (let k = 1; k < 13; k++) { const t = k / 13; front += marigold(x0 + sw * t, 10 + 160 * t * (1 - t), 9, ...(k % 2 ? OR : YE)); }
+  }
+  for (let j = 0; j <= 4; j++) {
+    const x = j * sw;
+    drops += `<line x1="${x}" y1="6" x2="${x}" y2="96" stroke="#d9a441" stroke-width="1.4"/>`;
+    [20, 40, 60, 80].forEach((y, i) => drops += marigold(x, y, 10, ...(i % 2 ? YE : OR)));
+    drops += leaf(x, 88, 1.1);
+  }
+  let leaves = ''; for (let x = 30; x < Wd; x += 60) leaves += leaf(x, 4, .6);
+  return `<svg viewBox="0 -10 ${Wd} 180" aria-hidden="true"><line x1="0" y1="6" x2="${Wd}" y2="6" stroke="#c9862b" stroke-width="5"/>${leaves}${back}${front}${drops}</svg>`;
+}
+function pillarSVG() {
+  let flutes = '', beads = '', dia = '', lotusDown = '', lotusUp = '', leaves = '';
+  [70, 85, 100, 115, 130].forEach(x => flutes += `<line x1="${x}" y1="212" x2="${x}" y2="856" stroke="rgba(70,30,8,.38)" stroke-width="3"/><line x1="${x + 3}" y1="212" x2="${x + 3}" y2="856" stroke="rgba(255,230,170,.18)" stroke-width="1.5"/>`);
+  for (let x = 12; x < 200; x += 16) beads += `<circle cx="${x}" cy="18" r="4.5" fill="#7d1d35" stroke="#ffd36b" stroke-width="1"/>`;
+  const band = y => { let s = `<rect x="50" y="${y}" width="100" height="26" fill="url(#pGold)"/><rect x="50" y="${y + 6}" width="100" height="14" fill="#7d1d35"/>`; for (let x = 58; x < 148; x += 14) s += `<path d="M${x} ${y + 13} l6 -6 l6 6 l-6 6z" fill="#ffd36b"/>`; return s; };
+  for (let i = 0; i < 7; i++) { const x = 40 + i * 20; leaves += `<path d="M${x} 104 C${x - 9} 118 ${x - 4} 136 ${x + 10} 142 C${x + 14} 128 ${x + 12} 114 ${x + 10} 104Z" fill="#8a4b1f" stroke="#ffd36b" stroke-width="1.2"/>`; }
+  for (let i = 0; i < 6; i++) { const x = 46 + i * 21.6; lotusDown += `<path d="M${x} 872 Q${x + 10.8} 912 ${x + 21.6} 872" fill="url(#pStone)" stroke="#ffd36b" stroke-width="1.4"/>`; }
+  for (let i = 0; i < 8; i++) { const a = i * 45; dia += `<ellipse cx="0" cy="-20" rx="7" ry="15" fill="#e0a456" stroke="#ffd36b" stroke-width="1.2" transform="rotate(${a})"/>`; }
+  let hang = `<line x1="186" y1="74" x2="186" y2="250" stroke="#d9a441" stroke-width="1.5"/>`;
+  [96, 120, 144, 168, 192, 216].forEach((y, i) => hang += marigold(186, y, 9, ...(i % 2 ? YE : OR)));
+  hang += `<path d="M178 236 Q186 226 194 236 L196 252 H176 Z" fill="url(#pGold)"/><circle cx="186" cy="255" r="3" fill="#ffd36b"/>`;
+  return `<svg viewBox="0 0 200 1080" aria-hidden="true">
+    <rect x="0" y="0" width="200" height="36" fill="url(#pStone)"/>${beads}
+    <rect x="0" y="36" width="200" height="6" fill="url(#pGold)"/>
+    <path d="M6 42 H194 V58 H178 V74 H22 V58 H6Z" fill="url(#pStone)"/>
+    <path d="M22 74 Q22 100 46 104 H154 Q178 100 178 74Z" fill="url(#pDark)"/>
+    <path d="M48 104 C18 112 18 160 56 174 H144 C182 160 182 112 152 104Z" fill="url(#pStone)"/>${leaves}
+    <rect x="46" y="174" width="108" height="10" fill="url(#pGold)"/>
+    <rect x="56" y="184" width="88" height="16" fill="url(#pDark)"/>
+    <rect x="46" y="200" width="108" height="10" fill="url(#pGold)"/>
+    <rect x="58" y="210" width="84" height="652" fill="url(#pStone)"/>${flutes}
+    ${band(330)}${band(696)}
+    <g transform="translate(100 515)"><circle r="40" fill="url(#pDark)" stroke="#ffd36b" stroke-width="3"/>${dia}<circle r="11" fill="#7d1d35" stroke="#ffd36b" stroke-width="2"/></g>
+    <rect x="46" y="862" width="108" height="10" fill="url(#pGold)"/>${lotusDown}
+    <path d="M28 904 H172 Q190 924 172 944 H28 Q10 924 28 904Z" fill="url(#pStone)"/>
+    <rect x="18" y="944" width="164" height="8" fill="url(#pGold)"/>
+    <rect x="8" y="952" width="184" height="56" fill="url(#pStone)"/>
+    <rect x="24" y="964" width="152" height="32" rx="5" fill="url(#pDark)"/>
+    <path d="M40 980 l10 -9 l10 9 l-10 9z M90 980 l10 -9 l10 9 l-10 9z M140 980 l10 -9 l10 9 l-10 9z" fill="#ffd36b"/>
+    <rect x="0" y="1008" width="200" height="6" fill="url(#pGold)"/>
+    <rect x="0" y="1014" width="200" height="66" fill="url(#pDark)"/>
+    ${hang}
+  </svg>`;
+}
+function makeStars(el, n) {
+  let h = '';
+  for (let i = 0; i < n; i++) { const s = Math.random() < .1 ? 3 : Math.random() < .5 ? 2 : 1.3; h += `<i class="star" style="left:${(Math.random() * 100).toFixed(2)}%;top:${(Math.random() * 100).toFixed(2)}%;width:${s}px;height:${s}px;--t:${rand(2, 5).toFixed(2)}s;--d:${rand(0, 4).toFixed(2)}s"></i>`; }
+  el.innerHTML = h;
+}
+
+/* ---------- paint the scene ---------- */
+makeStars($('#stars'), 150);
+$$('.pillar').forEach(el => el.innerHTML = pillarSVG());
+$('.toran').innerHTML = toranSVG();
+$('.flantern.l').innerHTML = kandilSVG('#f28a2e', 70);
+$('.flantern.r').innerHTML = kandilSVG('#e0457b', 70);
+$$('[data-logo]').forEach(el => el.innerHTML = logoHTML(+el.dataset.logo));
+$('.hr-holder').innerHTML = heroRangoliSVG();
+{ const pts = []; for (let i = 0; i < 5; i++) { const a = (50 + i * 20) * Math.PI / 180; pts.push([1340 + Math.cos(a) * 372, 490 + Math.sin(a) * 372]); } placeDiyas($('.hero-diyas'), pts); }
+placeDiyas($('.sched-diyas'), [480, 680, 880, 1040, 1240, 1440].map(x => [x, 955]));
+placeDiyas($('.close-diyas'), [560, 720, 880, 1040, 1200, 1360].map(x => [x, 940]));
+$('.close-lanterns').innerHTML = [[430, '#f28a2e', 20], [690, '#e0457b', 80], [960, '#f5b942', 40], [1230, '#f28a2e', 90], [1490, '#e0457b', 30]]
+  .map(([x, c, t], i) => `<div class="close-lantern" style="left:${x - 52}px;animation-delay:${-i * .9}s">${kandilSVG(c, t + 40)}</div>`).join('');
+$$('.rosettes').forEach(el => el.innerHTML = [[255, 167], [1555, 167], [255, 899], [1555, 899]].map(([x, y]) => `<div class="rosette" style="left:${x}px;top:${y}px">${rosetteSVG()}</div>`).join(''));
+const EVENTS = [
+  ['10:30 AM', 'Ludo Finals', '#ff7a1a'], ['Followed by', 'Games & Fun Activities', '#e8407f'], ['12:30 – 1:30 PM', 'Puja Ceremony', '#f39a1e'],
+  ['1:30 PM', 'Lunch', '#17a6a2'], ['After Lunch', 'Tambola & Fun Performances', '#d0263b'], ['Grand Finale', 'Dance & Performances', '#8e44ad']
+];
+$('.sched-items').innerHTML = EVENTS.map(([time, title, c], k) => {
+  const x = 430 + 212 * k, d = (1 + k * .62).toFixed(2);
+  return `<span class="node a-pop" style="--x:${x}px;--c:${c};--d:${d}s"></span><div class="ev ${k % 2 ? 'down' : 'up'} a" style="--x:${x}px;--c:${c};--d:${d}s"><span class="pill">${time}</span><span class="t">${title.replace('&', '&amp;')}</span></div>`;
+}).join('');
+
+/* ---------- loop: clone the poster to the end for a seamless restart ---------- */
+const track = $('#track');
+const heroClone = track.firstElementChild.cloneNode(true);
+heroClone.setAttribute('aria-hidden', 'true');
+track.appendChild(heroClone);
+const SECS = $$('.sec', track);
+SECS.forEach((s, i) => { s._top = i * H; s._video = $('video', s); s._vis = 0; });
+
+/* ---------- fireworks engine ---------- */
+const PALETTES = [['#ffd166', '#ff9f1c', '#fff3b0'], ['#ff5d8f', '#ffd6e7', '#ffd166'], ['#2ec4b6', '#cbf3f0', '#ffd166'],
+  ['#c77dff', '#e0aaff', '#ffffff'], ['#ff4d4d', '#ffb3b3', '#ffd166'], ['#ffd166', '#2ec4b6', '#ff5d8f', '#c77dff']];
+class FX {
+  constructor(cv, max) { this.cv = cv; this.c = cv.getContext('2d'); this.w = cv.width; this.h = cv.height; this.p = []; this.r = []; this.max = max; this.dirty = false; }
+  spark(o) { if (this.p.length >= this.max) return; o.maxLife = o.life; this.p.push(o); }
+  burst(x, y, o = {}) {
+    const type = o.type || pick(['peony', 'peony', 'ring', 'willow', 'double']), pal = o.colors || pick(PALETTES), sc = o.scale || 1;
+    const n = Math.round((type === 'ring' ? 80 : 120) * sc * (reduced ? .5 : 1)), sp = rand(4.5, 6.5) * sc;
+    this.spark({ x, y, vx: 0, vy: 0, g: 0, drag: 1, life: 18, size: 80 * sc, color: '#fff1c1', glow: true });
+    for (let i = 0; i < n; i++) {
+      const a = type === 'ring' ? i / n * TAU : Math.random() * TAU, v = type === 'ring' ? sp : sp * Math.sqrt(Math.random()), wl = type === 'willow';
+      this.spark({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, g: wl ? .032 : .055, drag: wl ? .966 : .972, life: (wl ? 120 : 62) + Math.random() * 30,
+        size: (wl ? 1.8 : 2.6) * Math.max(.7, sc), color: wl ? (Math.random() < .8 ? '#ffc35c' : '#fff0b8') : pal[i % pal.length], flicker: wl || Math.random() < .22 });
+    }
+    if (type === 'double' || type === 'ring') { const p2 = pick(PALETTES); for (let i = 0; i < n * .4; i++) { const a = Math.random() * TAU, v = sp * .45 * Math.sqrt(Math.random()); this.spark({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, g: .05, drag: .97, life: 55, size: 2, color: pick(p2), flicker: true }); } }
+  }
+  launch(x0, y0, x1, y1, o) { const g = .09, h = Math.max(80, y0 - y1), vy = -Math.sqrt(2 * g * h); this.r.push({ x: x0, y: y0, vx: (x1 - x0) / (-vy / g), vy, g, o }); }
+  step(dt) {
+    const c = this.c;
+    if (!this.p.length && !this.r.length) { if (this.dirty) { c.clearRect(0, 0, this.w, this.h); this.dirty = false; } return; }
+    this.dirty = true;
+    c.clearRect(0, 0, this.w, this.h); c.globalCompositeOperation = 'lighter'; c.lineCap = 'round';
+    for (let i = this.r.length - 1; i >= 0; i--) {
+      const r = this.r[i]; r.vy += r.g * dt; r.x += r.vx * dt; r.y += r.vy * dt;
+      this.spark({ x: r.x, y: r.y, vx: rand(-.5, .5), vy: rand(.5, 1.6), g: .03, drag: .95, life: rand(16, 30), size: 2, color: Math.random() < .5 ? '#ffd27a' : '#ff9a3c', flicker: true });
+      c.globalAlpha = 1; c.fillStyle = '#fff3c4'; c.beginPath(); c.arc(r.x, r.y, 2.6, 0, TAU); c.fill();
+      if (r.vy >= -.5) { this.r.splice(i, 1); this.burst(r.x, r.y, r.o || {}); }
+    }
+    const P = this.p;
+    for (let i = P.length - 1; i >= 0; i--) {
+      const p = P[i], k = Math.pow(p.drag, dt);
+      p.vx *= k; p.vy *= k; p.vy += p.g * dt; p.x += p.vx * dt; p.y += p.vy * dt; p.life -= dt;
+      if (p.life <= 0) { P[i] = P[P.length - 1]; P.pop(); continue; }
+      let a = p.life / p.maxLife;
+      if (p.glow) { const rad = p.size * (1.4 - a * .6), g = c.createRadialGradient(p.x, p.y, 0, p.x, p.y, rad); g.addColorStop(0, p.color); g.addColorStop(1, 'rgba(0,0,0,0)'); c.globalAlpha = a * .85; c.fillStyle = g; c.beginPath(); c.arc(p.x, p.y, rad, 0, TAU); c.fill(); continue; }
+      if (p.flicker && Math.random() < .3) a *= .25;
+      c.globalAlpha = a; c.strokeStyle = p.color; c.lineWidth = p.size;
+      c.beginPath(); c.moveTo(p.x - p.vx * 1.8, p.y - p.vy * 1.8); c.lineTo(p.x, p.y); c.stroke();
+    }
+    c.globalAlpha = 1;
+  }
+}
+const back = new FX($('#backFx'), 1600);
+const front = new FX($('#frontFx'), 700);
+// sparkler on the logo inside each rangoli (tip of the sparkler, in canvas px)
+const sparklers = $$('.hero-rangoli canvas').map(cv => ({ fx: new FX(cv, 260), sec: cv.closest('.sec'), x: (100 - 25 + 76 * .5) * 3.3, y: (100 - 25 + 26.5 * .5) * 3.3 }));
+
+/* ---------- scroll engine ---------- */
+let idx = 0, mode = 'hold', t0 = performance.now(), offset = 0, paused = false, pausedAt = 0, waitingVideo = false, videoTimer = 0;
+let nextAmbient = 0;
+const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+function prime(v) { if (v && v.preload !== 'auto') { v.preload = 'auto'; v.load(); } }
+function volley() {
+  if (reduced) return;
+  for (let k = 0; k < 4; k++) setTimeout(() => {
+    const left = k % 2 === 0;
+    front.launch(left ? rand(250, 330) : rand(1590, 1670), H + 10, left ? rand(260, 420) : rand(1500, 1660), rand(170, 330), { scale: .6 });
+  }, k * 220);
+}
+function arrive(i) {
+  const s = SECS[i];
+  volley();
+  const nx = SECS[i + 1]; if (nx && nx._video) prime(nx._video);
+  clearTimeout(videoTimer); waitingVideo = false;
+  if (s._video) {
+    const v = s._video; waitingVideo = true; prime(v);
+    const finish = () => { waitingVideo = false; v.onended = null; clearTimeout(videoTimer); };
+    const armTimer = () => { clearTimeout(videoTimer); videoTimer = setTimeout(finish, (isFinite(v.duration) && v.duration > 0 ? v.duration * 1000 + 2500 : 90000)); };
+    v.onended = finish;
+    try { v.currentTime = 0; } catch (e) {}
+    const p = v.play();
+    if (p && p.catch) p.catch(() => { clearTimeout(videoTimer); videoTimer = setTimeout(finish, 5000); });
+    if (v.readyState >= 1) armTimer(); else v.addEventListener('loadedmetadata', armTimer, { once: true });
+  }
+}
+function goTo(i) {
+  idx = (i + SECS.length - 1) % (SECS.length - 1);
+  mode = 'hold'; t0 = performance.now(); offset = SECS[idx]._top;
+  SECS.forEach(s => { if (s._video) s._video.pause(); });
+  arrive(idx);
+}
+function updateSections() {
+  for (const s of SECS) {
+    const top = s._top - offset, vis = Math.max(0, Math.min(H, top + H) - Math.max(0, top)) / H;
+    s._vis = vis;
+    if (vis > .12 && !s.classList.contains('on')) s.classList.add('on');
+    else if (vis === 0 && s.classList.contains('on')) s.classList.remove('on', 'instant');
+    const v = s._video;
+    if (v) {
+      if (vis < .5 && !v.paused) v.pause();                    // off screen → stop
+      if (vis === 0 && !s._reset) { s._reset = true; try { v.currentTime = 0; } catch (e) {} }
+      if (vis > 0) s._reset = false;
+    }
+  }
+}
+function frame(now) {
+  const dt = Math.min(2.5, (now - (frame.last || now)) / 16.667); frame.last = now;
+  if (!paused) {
+    const s = SECS[idx];
+    if (mode === 'hold') {
+      offset = s._top;
+      const hold = s.dataset.hold;
+      const done = hold === 'video' ? (!waitingVideo && now - t0 > 2000) : now - t0 >= (+hold || 6) * 1000;
+      if (done) { mode = 'glide'; t0 = now; }
+    } else {
+      const p = Math.min(1, (now - t0) / GLIDE);
+      offset = s._top + (SECS[idx + 1]._top - s._top) * ease(p);
+      if (p >= 1) {
+        idx++;
+        if (idx === SECS.length - 1) { idx = 0; offset = 0; SECS[0].classList.add('on', 'instant'); }
+        mode = 'hold'; t0 = now; arrive(idx);
+      }
+    }
+    track.style.transform = `translate3d(0,${-offset}px,0)`;
+    updateSections();
+    if (now > nextAmbient) {
+      nextAmbient = now + (reduced ? rand(3000, 5000) : rand(550, 1300));
+      back.launch(rand(260, 1660), H + 10, rand(240, 1680), rand(110, 560), { scale: rand(.7, 1.15) });
+    }
+  }
+  back.step(dt); front.step(dt);
+  for (const sp of sparklers) {
+    if (sp.sec._vis > 0 && !paused) {
+      const n = Math.floor(8 * dt + Math.random());
+      for (let k = 0; k < n; k++) { const a = rand(0, TAU), v = rand(2, 7); sp.fx.spark({ x: sp.x, y: sp.y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, g: .06, drag: .9, life: rand(8, 20), size: rand(1.2, 2.4), color: pick(['#fff', '#fff3b0', '#ffd166', '#ffb347']), flicker: true }); }
+      if (Math.random() < .5 * dt) sp.fx.spark({ x: sp.x, y: sp.y, vx: 0, vy: 0, g: 0, drag: 1, life: 6, size: 26, color: '#fff3c4', glow: true });
+    }
+    sp.fx.step(dt);
+  }
+  requestAnimationFrame(frame);
+}
+
+/* ---------- operator controls (keyboard / TV remote) ---------- */
+const hud = $('#hud'); let hudT = 0;
+function toast(msg) { hud.textContent = msg; hud.classList.add('show'); clearTimeout(hudT); hudT = setTimeout(() => hud.classList.remove('show'), 1600); }
+function togglePause() {
+  paused = !paused;
+  const v = SECS[idx]._video;
+  if (paused) { pausedAt = performance.now(); if (v) v.pause(); toast('Paused'); }
+  else { t0 += performance.now() - pausedAt; if (v && mode === 'hold' && waitingVideo) v.play().catch(() => {}); toast('Playing'); }
+}
+function fullscreen() { const d = document.documentElement; if (!document.fullscreenElement && d.requestFullscreen) d.requestFullscreen().catch(() => {}); }
+addEventListener('keydown', e => {
+  if (e.key === ' ' || e.key === 'Enter' || e.key === 'MediaPlayPause') { e.preventDefault(); togglePause(); }
+  else if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); goTo(idx + 1); }
+  else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); goTo(idx - 1); }
+  else if (e.key === 'f' || e.key === 'F') fullscreen();
+});
+addEventListener('click', fullscreen);
+let idleT = 0;
+addEventListener('mousemove', () => { document.body.classList.remove('idle'); clearTimeout(idleT); idleT = setTimeout(() => document.body.classList.add('idle'), 2500); });
+idleT = setTimeout(() => document.body.classList.add('idle'), 2500);
+// keep the TV screen awake
+async function wake() { try { if ('wakeLock' in navigator && document.visibilityState === 'visible') await navigator.wakeLock.request('screen'); } catch (e) {} }
+document.addEventListener('visibilitychange', wake); wake();
+
+/* ---------- go: always start at the top ---------- */
+offset = 0; arrive(0);
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
