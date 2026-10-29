@@ -137,6 +137,7 @@ canvas.front{ position:absolute; inset:0; z-index:4; width:1920px; height:1080px
 /* ---------- 3 · photo grid ---------- */
 .pgrid{ position:absolute; left:290px; top:236px; width:1340px; height:780px; display:grid;
   grid-template-columns:repeat(4,1fr); grid-template-rows:repeat(4,1fr); gap:20px; }
+.pgrid-3{ grid-template-columns:repeat(3,1fr); grid-template-rows:repeat(2,1fr); }
 .ph{ margin:0; border-radius:16px; overflow:hidden; background:#0a2235;
   box-shadow:0 0 0 4px var(--gold), 0 16px 34px rgba(0,0,0,.5); }
 .ph img,.sframe img{ width:100%; height:100%; object-fit:cover; display:block; }
@@ -261,25 +262,43 @@ canvas.front{ position:absolute; inset:0; z-index:4; width:1920px; height:1080px
       <figure class="sframe a-pop tilt-r" style="left:1250px;top:170px;width:410px;height:729px;--d:.55s"><img src="assets/photo-10.jpg" alt="Friends huddled around a phone playing Ludo"></figure>
     </section>
 
-    <!-- 7 · Video -->
+    <!-- 7 · More moments (second grid) -->
+    <section class="sec grid" data-hold="6.5">
+      <h2 class="sec-title gold-text a">More moments <span class="emo">📸</span></h2>
+      <div class="pgrid pgrid-3">
+        <figure class="ph a-pop" style="grid-area:1/1/3/2;--d:.25s"><img src="assets/photo-12.jpg" alt="The whole team cheering together"></figure>
+        <figure class="ph a-pop" style="grid-area:1/2/2/3;--d:.45s"><img src="assets/photo-11.jpg" alt="Colleagues playing Ludo at their desks"></figure>
+        <figure class="ph a-pop" style="grid-area:2/2/3/3;--d:.65s"><img src="assets/photo-01.jpg" alt="Prize winners with a gift"></figure>
+        <figure class="ph a-pop" style="grid-area:1/3/3/4;--d:.55s"><img src="assets/photo-13.jpg" alt="A Ludo game getting intense"></figure>
+      </div>
+    </section>
+
+    <!-- 8 · Office walk-through video (full, uncropped) -->
+    <section class="sec vid" data-hold="video">
+      <h2 class="sec-title gold-text a">A walk around the office <span class="emo">🪔</span></h2>
+      <div class="vframe a-pop" style="left:472px;width:976px;--d:.2s"><video muted playsinline preload="none" poster="assets/video-03-poster.jpg" src="assets/video-03.mp4"></video></div>
+      <div class="rosettes" data-box="472,222,976,732"></div>
+    </section>
+
+    <!-- 9 · Single photo -->
+    <section class="sec single" data-hold="5">
+      <h2 class="sec-title gold-text a">And the prize goes to… <span class="emo">🏆</span></h2>
+      <figure class="sframe a-pop" style="left:370px;top:236px;width:1180px;height:664px;--d:.25s"><img src="assets/photo-01.jpg" alt="Prize winners posing together"></figure>
+    </section>
+
+    <!-- 10 · Video (trimmed to 10 s) -->
     <section class="sec vid" data-hold="video">
       <h2 class="sec-title gold-text a">Grand finale energy <span class="emo">✨</span></h2>
       <div class="vframe a-pop" style="--d:.2s"><video muted playsinline preload="none" poster="assets/video-02-poster.jpg" src="assets/video-02.mp4"></video></div>
       <div class="rosettes"></div>
     </section>
 
-    <!-- 8 · Single photo -->
-    <section class="sec single" data-hold="5">
-      <h2 class="sec-title gold-text a">And the prize goes to… <span class="emo">🏆</span></h2>
-      <figure class="sframe a-pop" style="left:370px;top:236px;width:1180px;height:664px;--d:.25s"><img src="assets/photo-01.jpg" alt="Prize winners posing together"></figure>
-    </section>
-
-    <!-- 9 · Closing -->
+    <!-- 11 · Closing -->
     <section class="sec closing" data-hold="6.5">
       <div class="close-lanterns"></div>
       <div class="close-text">
         <h2 class="gold-text a" style="--d:.2s">Happy &amp; Prosperous Diwali</h2>
-        <p class="a" style="--d:.45s">Insta Veritas wishes you light, joy &amp; togetherness</p>
+        <p class="a" style="--d:.45s">InstaVeritas wishes you light, joy &amp; togetherness</p>
       </div>
       <div class="close-logo a" style="--d:.7s"><span class="plate" data-logo="70"></span></div>
       <div class="close-diyas"></div>
@@ -465,7 +484,7 @@ placeDiyas($('.sched-diyas'), [480, 680, 880, 1040, 1240, 1440].map(x => [x, 955
 placeDiyas($('.close-diyas'), [560, 720, 880, 1040, 1200, 1360].map(x => [x, 940]));
 $('.close-lanterns').innerHTML = [[430, '#f28a2e', 20], [690, '#e0457b', 80], [960, '#f5b942', 40], [1230, '#f28a2e', 90], [1490, '#e0457b', 30]]
   .map(([x, c, t], i) => `<div class="close-lantern" style="left:${x - 52}px;animation-delay:${-i * .9}s">${kandilSVG(c, t + 40)}</div>`).join('');
-$$('.rosettes').forEach(el => el.innerHTML = [[255, 167], [1555, 167], [255, 899], [1555, 899]].map(([x, y]) => `<div class="rosette" style="left:${x}px;top:${y}px">${rosetteSVG()}</div>`).join(''));
+$$('.rosettes').forEach(el => { const [l, t, w, h] = (el.dataset.box || '310,222,1300,732').split(',').map(Number); el.innerHTML = [[l - 55, t - 55], [l + w - 55, t - 55], [l - 55, t + h - 55], [l + w - 55, t + h - 55]].map(([x, y]) => `<div class="rosette" style="left:${x}px;top:${y}px">${rosetteSVG()}</div>`).join(''); });
 const EVENTS = [
   ['10:30 AM', 'Ludo Finals', '#ff7a1a'], ['Followed by', 'Games & Fun Activities', '#e8407f'], ['12:30 – 1:30 PM', 'Puja Ceremony', '#f39a1e'],
   ['1:30 PM', 'Lunch', '#17a6a2'], ['After Lunch', 'Tambola & Fun Performances', '#d0263b'], ['Grand Finale', 'Dance & Performances', '#8e44ad']
